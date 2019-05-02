@@ -78,9 +78,18 @@ if (!empty(TOKEN) && isset($_SERVER["HTTP_X_HUB_SIGNATURE"]) && $token !== hash_
                     }
                 }
 
-                // pull
-                $result = shell_exec(GIT . " pull 2>&1");
-                fputs($file, $result . "\n");
+                if (defined(RESET_MODE)) {
+                    // fetch all
+                    $result = shell_exec(GIT . " fetch --all 2>&1");
+                    fputs($file, $result . "\n");
+                    // now reset to remote branch
+                    $result = shell_exec(GIT . " reset --" . RESET_MODE . " @{u} 2>&1");
+                    fputs($file, $result . "\n");
+                } else {
+                    // pull
+                    $result = shell_exec(GIT . " pull 2>&1");
+                    fputs($file, $result . "\n");
+                }
 
                 // return OK to prevent timeouts on AFTER_PULL
                 ok();

@@ -7,5 +7,6 @@ define("LOGFILE", "deploy.log");                                       // The na
 define("GIT", "/usr/bin/git");                                         // The path to the git executable
 define("BEFORE_PULL", "");                                             // A command to execute before pulling
 define("AFTER_PULL", "");                                              // A command to execute after successfully pulling
+define("RESET_MODE", "hard");                                          // Mode used when resetting, see git-reset(1)
 
 require_once("deployer.php");

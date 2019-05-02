@@ -31,6 +31,7 @@ define("LOGFILE", "deploy.log");
 define("GIT", "/usr/bin/git");
 define("BEFORE_PULL", "/usr/bin/git reset --hard @{u}");
 define("AFTER_PULL", "/usr/bin/node ./node_modules/gulp/bin/gulp.js default");
+define("RESET_MODE", "hard");
 ```
 ### Permissions
 
